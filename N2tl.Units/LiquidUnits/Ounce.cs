@@ -7,10 +7,10 @@ namespace N2tl.Units.LiquidUnits
     {
         private readonly decimal _ounces;
 
-        internal Ounce(decimal ounces)
-            : base(ounces * Constants.OuncesToMilliliters)
+        internal Ounce(decimal milliliters)
+            : base(milliliters)
         {
-            _ounces = ounces;
+            _ounces = milliliters / Constants.OuncesToMilliliters;
         }
 
         public override decimal Decimal => _ounces;
@@ -20,25 +20,18 @@ namespace N2tl.Units.LiquidUnits
         public override string ToString() => _ounces.ToString(CultureInfo.InvariantCulture);
 
         public static Ounce operator +(Ounce a, Ounce b) =>
-            new Ounce(a._ounces + b._ounces);
+            new Ounce(a._milliliters + b._milliliters);
 
         public static Ounce operator -(Ounce a, Ounce b) =>
-            new Ounce(a._ounces - b._ounces);
+            new Ounce(a._milliliters - b._milliliters);
 
         public static Ounce operator *(Ounce a, Ounce b) =>
-            new Ounce(a._ounces * b._ounces);
+            new Ounce(a._milliliters * b._milliliters);
 
-        public static Ounce operator /(Ounce a, Ounce b)
-        {
-            if (b._ounces == 0)
-            {
-                throw new DivideByZeroException();
-            }
-
-            return new Ounce(a._ounces / b._ounces);
-        }
+        public static Ounce operator /(Ounce a, Ounce b) =>
+            new Ounce(a._milliliters / b._milliliters);
 
         public static Ounce operator %(Ounce a, Ounce b) =>
-            new Ounce(a._ounces % b._ounces);
+            new Ounce(a._milliliters % b._milliliters);
     }
 }

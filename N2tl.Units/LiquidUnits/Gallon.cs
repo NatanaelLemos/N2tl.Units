@@ -7,10 +7,10 @@ namespace N2tl.Units.LiquidUnits
     {
         private readonly decimal _gallons;
 
-        internal Gallon(decimal gallons)
-            : base(gallons * Constants.GallonsToLiters)
+        internal Gallon(decimal milliliters)
+            : base(milliliters)
         {
-            _gallons = gallons;
+            _gallons = milliliters / Constants.GallonsToMilliliters;
         }
 
         public override decimal Decimal => _gallons;
@@ -20,25 +20,18 @@ namespace N2tl.Units.LiquidUnits
         public override string ToString() => _gallons.ToString(CultureInfo.InvariantCulture);
 
         public static Gallon operator +(Gallon a, Gallon b) =>
-            new Gallon(a._gallons + b._gallons);
+            new Gallon(a._milliliters + b._milliliters);
 
         public static Gallon operator -(Gallon a, Gallon b) =>
-            new Gallon(a._gallons - b._gallons);
+            new Gallon(a._milliliters - b._milliliters);
 
         public static Gallon operator *(Gallon a, Gallon b) =>
-            new Gallon(a._gallons * b._gallons);
+            new Gallon(a._milliliters * b._milliliters);
 
-        public static Gallon operator /(Gallon a, Gallon b)
-        {
-            if (b._gallons == 0)
-            {
-                throw new DivideByZeroException();
-            }
-
-            return new Gallon(a._gallons / b._gallons);
-        }
+        public static Gallon operator /(Gallon a, Gallon b) =>
+            new Gallon(a._milliliters / b._milliliters);
 
         public static Gallon operator %(Gallon a, Gallon b) =>
-            new Gallon(a._gallons % b._gallons);
+            new Gallon(a._milliliters % b._milliliters);
     }
 }

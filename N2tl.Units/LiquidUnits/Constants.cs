@@ -4,12 +4,10 @@ namespace N2tl.Units.LiquidUnits
     {
         internal const decimal OuncesToMilliliters = 29.5735M;
 
-        internal const decimal CupsToOunces = 8M;
-
-        internal const decimal LitersToCups = 4.22675M;
+        internal const decimal CupsToMilliliters = 236.588M;
 
         internal const decimal LitersToMilliliters = 1000;
 
-        internal const decimal GallonsToLiters = 3.785411784M;
+        internal const decimal GallonsToMilliliters = 3785.41M;
     }
 }

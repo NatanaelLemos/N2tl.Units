@@ -7,10 +7,10 @@ namespace N2tl.Units.LiquidUnits
     {
         private readonly decimal _cups;
 
-        internal Cup(decimal cups)
-            : base(cups * Constants.CupsToOunces)
+        internal Cup(decimal milliliters)
+            : base(milliliters)
         {
-            _cups = cups;
+            _cups = milliliters / Constants.CupsToMilliliters;
         }
 
         public override decimal Decimal => _cups;
@@ -20,25 +20,18 @@ namespace N2tl.Units.LiquidUnits
         public override string ToString() => _cups.ToString(CultureInfo.InvariantCulture);
 
         public static Cup operator +(Cup a, Cup b) =>
-            new Cup(a._cups + b._cups);
+            new Cup(a._milliliters + b._milliliters);
 
         public static Cup operator -(Cup a, Cup b) =>
-            new Cup(a._cups - b._cups);
+            new Cup(a._milliliters - b._milliliters);
 
         public static Cup operator *(Cup a, Cup b) =>
-            new Cup(a._cups * b._cups);
+            new Cup(a._milliliters * b._milliliters);
 
-        public static Cup operator /(Cup a, Cup b)
-        {
-            if (b._cups == 0)
-            {
-                throw new DivideByZeroException();
-            }
-
-            return new Cup(a._cups / b._cups);
-        }
+        public static Cup operator /(Cup a, Cup b) =>
+            new Cup(a._milliliters / b._milliliters);
 
         public static Cup operator %(Cup a, Cup b) =>
-            new Cup(a._cups % b._cups);
+            new Cup(a._milliliters % b._milliliters);
     }
 }

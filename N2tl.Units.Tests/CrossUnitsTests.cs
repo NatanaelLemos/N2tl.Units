@@ -69,7 +69,29 @@ namespace N2tl.Units.Tests
         {
             var result = 8045.Milliliters().Ounces().Cups().Liters().Gallons()
                 .Liters().Cups().Ounces().Milliliters();
-            result.Should().Be(8044.986556805.Milliliters());
+            result.Should().Be(8045.Milliliters());
+        }
+
+        [Fact]
+        public void LitersToMillilitersToLiters()
+        {
+            var liters = 10.Liters();
+            var milliliters = liters.Milliliters();
+            milliliters.Should().Be(10000.Milliliters());
+
+            liters = milliliters.Liters();
+            liters.Should().Be(10.Liters());
+        }
+
+        [Fact]
+        public void OperationsShouldDefaultToLowerType()
+        {
+            var liters = 10.Liters();
+            var gallons = 3.Gallons();
+
+            var result = gallons + liters;
+            result.Should().Be(21.35623.Liters());
+            result.Should().BeOfType<Liter>();
         }
     }
 }

@@ -5,7 +5,7 @@ namespace N2tl.Units.LiquidUnits
 {
     public class Milliliter
     {
-        private readonly decimal _milliliters;
+        protected readonly decimal _milliliters;
 
         internal Milliliter(decimal milliliters)
         {
@@ -14,15 +14,15 @@ namespace N2tl.Units.LiquidUnits
 
         public virtual decimal Decimal => _milliliters;
 
-        public virtual Milliliter Milliliters() => _milliliters.Milliliters();
+        public Milliliter Milliliters() => _milliliters.Milliliters();
 
-        public virtual Ounce Ounces() => new Ounce(Milliliters().Decimal / Constants.OuncesToMilliliters);
+        public virtual Ounce Ounces() => new Ounce(_milliliters);
 
-        public virtual Cup Cups() => new Cup(Ounces().Decimal / Constants.CupsToOunces);
+        public virtual Cup Cups() => new Cup(_milliliters);
 
-        public virtual Liter Liters() => new Liter(_milliliters / Constants.LitersToMilliliters);
+        public virtual Liter Liters() => new Liter(_milliliters);
 
-        public virtual Gallon Gallons() => new Gallon(Liters().Decimal / Constants.GallonsToLiters);
+        public virtual Gallon Gallons() => new Gallon(_milliliters);
 
         public override bool Equals(object obj)
         {
